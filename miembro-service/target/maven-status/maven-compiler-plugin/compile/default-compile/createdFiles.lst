@@ -1,0 +1,5 @@
+co\analisys\gimnasio\miembro\service\MiembroService.class
+co\analisys\gimnasio\miembro\controller\MiembroController.class
+co\analisys\gimnasio\miembro\MiembroServiceApplication.class
+co\analisys\gimnasio\miembro\repository\MiembroRepository.class
+co\analisys\gimnasio\miembro\model\Miembro.class

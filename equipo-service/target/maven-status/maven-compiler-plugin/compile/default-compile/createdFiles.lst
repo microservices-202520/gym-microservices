@@ -1,0 +1,5 @@
+co\analisys\gimnasio\equipo\controller\EquipoController.class
+co\analisys\gimnasio\equipo\repository\EquipoRepository.class
+co\analisys\gimnasio\equipo\model\Equipo.class
+co\analisys\gimnasio\equipo\service\EquipoService.class
+co\analisys\gimnasio\equipo\EquipoServiceApplication.class

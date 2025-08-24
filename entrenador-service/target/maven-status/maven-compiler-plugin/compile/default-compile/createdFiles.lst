@@ -1,0 +1,5 @@
+co\analisys\gimnasio\entrenador\EntrenadorServiceApplication.class
+co\analisys\gimnasio\entrenador\service\EntrenadorService.class
+co\analisys\gimnasio\entrenador\model\Entrenador.class
+co\analisys\gimnasio\entrenador\controller\EntrenadorController.class
+co\analisys\gimnasio\entrenador\repository\EntrenadorRepository.class
