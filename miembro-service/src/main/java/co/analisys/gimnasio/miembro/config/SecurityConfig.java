@@ -21,11 +21,12 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/miembro/public/**").permitAll()
+                        .requestMatchers("/api/test/**").permitAll()
                         .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
                         .anyRequest().authenticated())
                 .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/h2-console/**"))
+                        .ignoringRequestMatchers("/h2-console/**", "/api/test/**"))
                 .headers(headers -> headers
                         .frameOptions().sameOrigin())
                 .oauth2ResourceServer(oauth2 -> oauth2

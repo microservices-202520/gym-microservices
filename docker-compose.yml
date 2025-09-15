@@ -1,6 +1,8 @@
 version: '3.8'
 
 services:
+  # RabbitMQ Broker
+  
   # Miembro Service
   miembro-service:
     build: ./miembro-service
@@ -8,8 +10,12 @@ services:
       - "8081:8081"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
     networks:
       - gimnasio-network
+    depends_on:
+      - rabbitmq
 
   # Entrenador Service
   entrenador-service:
@@ -18,8 +24,12 @@ services:
       - "8082:8082"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
     networks:
       - gimnasio-network
+    depends_on:
+      - rabbitmq
 
   # Clase Service
   clase-service:
@@ -29,10 +39,13 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - ENTRENADOR_SERVICE_URL=http://entrenador-service:8082
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
     networks:
       - gimnasio-network
     depends_on:
       - entrenador-service
+      - rabbitmq
 
   # Equipo Service
   equipo-service:
@@ -41,6 +54,8 @@ services:
       - "8084:8084"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
     networks:
       - gimnasio-network
 
@@ -55,6 +70,8 @@ services:
       - ENTRENADOR_SERVICE_URL=http://entrenador-service:8082
       - CLASE_SERVICE_URL=http://clase-service:8083
       - EQUIPO_SERVICE_URL=http://equipo-service:8084
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
     networks:
       - gimnasio-network
     depends_on:
@@ -62,6 +79,20 @@ services:
       - entrenador-service
       - clase-service
       - equipo-service
+      - rabbitmq
+
+  # Add RabbitMQ env to existing services
+
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    ports:
+      - "5672:5672"      # AMQP
+      - "15672:15672"    # Management UI
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    networks:
+      - gimnasio-network
 
 networks:
   gimnasio-network:

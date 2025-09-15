@@ -5,7 +5,9 @@ import co.analisys.gimnasio.clase.dto.ClaseConEntrenadorDto;
 import co.analisys.gimnasio.clase.dto.EntrenadorDto;
 import co.analisys.gimnasio.clase.model.Clase;
 import co.analisys.gimnasio.clase.repository.ClaseRepository;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,8 +22,16 @@ public class ClaseService {
     @Autowired
     private EntrenadorClient entrenadorClient;
 
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
+    @Value("${app.messaging.clases.exchange:clases.horarios.exchange}")
+    private String horariosExchange;
+
     public Clase programarClase(Clase clase) {
-        return claseRepository.save(clase);
+        Clase saved = claseRepository.save(clase);
+        publicarCambioHorario("clase.programada:" + saved.getId());
+        return saved;
     }
 
     public List<Clase> obtenerTodasClases() {
@@ -45,11 +55,14 @@ public class ClaseService {
 
     public Clase actualizarClase(Long id, Clase clase) {
         clase.setId(id);
-        return claseRepository.save(clase);
+        Clase saved = claseRepository.save(clase);
+        publicarCambioHorario("clase.actualizada:" + saved.getId());
+        return saved;
     }
 
     public void eliminarClase(Long id) {
         claseRepository.deleteById(id);
+        publicarCambioHorario("clase.eliminada:" + id);
     }
     
     public List<Clase> obtenerClasesPorEntrenador(Long entrenadorId) {
@@ -69,5 +82,11 @@ public class ClaseService {
         }
         
         return dto;
+    }
+
+    private void publicarCambioHorario(String mensaje) {
+        try {
+            rabbitTemplate.convertAndSend(horariosExchange, "", mensaje);
+        } catch (Exception ignored) {}
     }
 }
