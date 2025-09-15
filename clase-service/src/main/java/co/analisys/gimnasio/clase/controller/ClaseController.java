@@ -26,7 +26,7 @@ public class ClaseController {
     @ApiResponse(responseCode = "200", description = "Clase creada exitosamente")
     @ApiResponse(responseCode = "403", description = "Acceso denegado")
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_TRAINER')")
     public Clase programarClase(@RequestBody Clase clase) {
         return claseService.programarClase(clase);
     }
@@ -34,14 +34,14 @@ public class ClaseController {
     @Operation(summary = "Obtener todas las clases", description = "Devuelve la lista de todas las clases registradas en el sistema.")
     @ApiResponse(responseCode = "200", description = "Listado obtenido exitosamente")
     @GetMapping
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')")
     public List<Clase> obtenerTodasClases() {
         return claseService.obtenerTodasClases();
     }
 
     @Operation(summary = "Obtener clases con entrenador", description = "Devuelve todas las clases junto con la información de su entrenador.")
     @GetMapping("/con-entrenador")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')")
     public List<ClaseConEntrenadorDto> obtenerClasesConEntrenador() {
         return claseService.obtenerClasesConEntrenador();
     }
@@ -49,7 +49,7 @@ public class ClaseController {
     @Operation(summary = "Obtener clase por ID", description = "Devuelve la información de una clase específica.")
     @ApiResponse(responseCode = "404", description = "Clase no encontrada")
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')")
     public ResponseEntity<Clase> obtenerClasePorId(@PathVariable Long id) {
         Optional<Clase> clase = claseService.obtenerClasePorId(id);
         return clase.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
@@ -58,7 +58,7 @@ public class ClaseController {
     @Operation(summary = "Obtener clase con entrenador por ID", description = "Devuelve una clase específica junto con su entrenador.")
     @ApiResponse(responseCode = "404", description = "Clase no encontrada")
     @GetMapping("/{id}/con-entrenador")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')")
     public ResponseEntity<ClaseConEntrenadorDto> obtenerClaseConEntrenadorPorId(@PathVariable Long id) {
         Optional<ClaseConEntrenadorDto> clase = claseService.obtenerClaseConEntrenadorPorId(id);
         return clase.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
@@ -66,14 +66,14 @@ public class ClaseController {
 
     @Operation(summary = "Actualizar clase", description = "Permite a un administrador actualizar los datos de una clase.")
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_TRAINER')")
     public Clase actualizarClase(@PathVariable Long id, @RequestBody Clase clase) {
         return claseService.actualizarClase(id, clase);
     }
 
     @Operation(summary = "Eliminar clase", description = "Permite a un administrador eliminar una clase del sistema.")
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_TRAINER')")
     public ResponseEntity<Void> eliminarClase(@PathVariable Long id) {
         claseService.eliminarClase(id);
         return ResponseEntity.noContent().build();
@@ -81,7 +81,7 @@ public class ClaseController {
 
     @Operation(summary = "Obtener clases por entrenador", description = "Devuelve todas las clases dictadas por un entrenador específico.")
     @GetMapping("/entrenador/{entrenadorId}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER', 'ROLE_TRAINER')")
     public List<Clase> obtenerClasesPorEntrenador(@PathVariable Long entrenadorId) {
         return claseService.obtenerClasesPorEntrenador(entrenadorId);
     }

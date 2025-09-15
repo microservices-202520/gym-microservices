@@ -29,7 +29,7 @@ public class EquipoController {
 
     @Operation(summary = "Listar equipos", description = "Devuelve todos los equipos registrados.")
     @GetMapping
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER', 'ROLE_TRAINER')")
     public List<Equipo> obtenerTodosEquipos() {
         return equipoService.obtenerTodosEquipos();
     }
@@ -37,7 +37,7 @@ public class EquipoController {
     @Operation(summary = "Obtener equipo por ID", description = "Devuelve la información de un equipo específico.")
     @ApiResponse(responseCode = "404", description = "Equipo no encontrado")
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER', 'ROLE_TRAINER')")
     public ResponseEntity<Equipo> obtenerEquipoPorId(@PathVariable Long id) {
         Optional<Equipo> equipo = equipoService.obtenerEquipoPorId(id);
         return equipo.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());

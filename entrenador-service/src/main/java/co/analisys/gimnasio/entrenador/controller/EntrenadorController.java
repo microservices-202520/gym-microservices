@@ -29,7 +29,7 @@ public class EntrenadorController {
 
     @Operation(summary = "Obtener todos los entrenadores", description = "Lista todos los entrenadores registrados.")
     @GetMapping
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER', 'ROLE_TRAINER')")
     public List<Entrenador> obtenerTodosEntrenadores() {
         return entrenadorService.obtenerTodosEntrenadores();
     }
@@ -37,7 +37,7 @@ public class EntrenadorController {
     @Operation(summary = "Obtener entrenador por ID", description = "Devuelve la información de un entrenador específico.")
     @ApiResponse(responseCode = "404", description = "Entrenador no encontrado")
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')")
     public ResponseEntity<Entrenador> obtenerEntrenadorPorId(@PathVariable Long id) {
         Optional<Entrenador> entrenador = entrenadorService.obtenerEntrenadorPorId(id);
         return entrenador.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());

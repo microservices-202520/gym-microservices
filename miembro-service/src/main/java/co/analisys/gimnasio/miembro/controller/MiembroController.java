@@ -29,7 +29,7 @@ public class MiembroController {
 
     @Operation(summary = "Listar miembros", description = "Devuelve todos los miembros registrados en el sistema.")
     @GetMapping
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')")
     public List<Miembro> obtenerTodosMiembros() {
         return miembroService.obtenerTodosMiembros();
     }
@@ -37,7 +37,7 @@ public class MiembroController {
     @Operation(summary = "Obtener miembro por ID", description = "Devuelve la información de un miembro específico.")
     @ApiResponse(responseCode = "404", description = "Miembro no encontrado")
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')")
     public ResponseEntity<Miembro> obtenerMiembroPorId(@PathVariable Long id) {
         Optional<Miembro> miembro = miembroService.obtenerMiembroPorId(id);
         return miembro.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
