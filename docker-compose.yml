@@ -48,7 +48,7 @@ services:
   gateway-service:
     build: ./gateway-service
     ports:
-      - "8080:8080"
+      - "8085:8085"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - MIEMBRO_SERVICE_URL=http://miembro-service:8081

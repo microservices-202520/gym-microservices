@@ -17,5 +17,5 @@ public class Clase {
     private String nombre;
     private LocalDateTime horario;
     private int capacidadMaxima;
-    private Long entrenadorId; // Referencia al entrenador por ID
+    private Long entrenadorId;
 }
