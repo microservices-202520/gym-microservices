@@ -1,4 +1,4 @@
-package co.analisys.gimnasio.config;
+package co.analisys.gimnasio.clase.config;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,15 +10,23 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class KeycloakRealmRoleConverter implements Converter<Jwt, Collection<GrantedAuthority>> {
-    @Override public Collection<GrantedAuthority> convert(Jwt jwt) {
+    @Override
+    public Collection<GrantedAuthority> convert(Jwt jwt) {
         final Map<String, Object> realmAccess = (Map<String, Object>)
                 jwt.getClaims().get("realm_access");
-        return ((List<String>) realmAccess.get("roles")).stream() .map(roleName -> {
-                    if (roleName.startsWith("ROLE_")) { return new SimpleGrantedAuthority(roleName);
+        
+        if (realmAccess == null || realmAccess.get("roles") == null) {
+            return List.of();
+        }
+        
+        return ((List<String>) realmAccess.get("roles")).stream()
+                .map(roleName -> {
+                    if (roleName.startsWith("ROLE_")) {
+                        return new SimpleGrantedAuthority(roleName);
                     } else {
                         return new SimpleGrantedAuthority("ROLE_" + roleName);
                     }
-                }
-        ) .collect(Collectors.toList());
+                })
+                .collect(Collectors.toList());
     }
 }

@@ -1,35 +1,37 @@
-package co.analisys.gimnasio.config;
+package co.analisys.gimnasio.gateway.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
-import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.server.resource.authentication.ReactiveJwtAuthenticationConverterAdapter;
+import org.springframework.security.web.server.SecurityWebFilterChain;
+import reactor.core.publisher.Mono;
 
 @Configuration
-@EnableWebSecurity
-@EnableMethodSecurity // Reemplaza @EnableGlobalMethodSecurity
+@EnableWebFluxSecurity
 public class SecurityConfig {
+
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/public/**").permitAll()
-                        .anyRequest().authenticated() )
-                .oauth2ResourceServer(oauth2 -> oauth2 .jwt(jwt ->
-                        jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())) );
-        return http.build();
+    public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
+        return http
+                .authorizeExchange(exchanges -> exchanges
+                        .pathMatchers("/gateway/public/**").permitAll()
+                        .pathMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**").permitAll()
+                        .anyExchange().authenticated())
+                .oauth2ResourceServer(oauth2 -> oauth2
+                        .jwt(jwt -> jwt
+                                .jwtAuthenticationConverter(jwtAuthenticationConverter())))
+                .build();
     }
-    private Converter<Jwt, ? extends AbstractAuthenticationToken> jwtAuthenticationConverter() {
+
+    private Converter<Jwt, Mono<AbstractAuthenticationToken>> jwtAuthenticationConverter() {
         JwtAuthenticationConverter jwtConverter = new JwtAuthenticationConverter();
         jwtConverter.setJwtGrantedAuthoritiesConverter(new KeycloakRealmRoleConverter());
-        return jwtConverter;
+        return new ReactiveJwtAuthenticationConverterAdapter(jwtConverter);
     }
 }
