@@ -1,6 +1,7 @@
 package co.analisys.gimnasio.miembro.service;
 
-import co.analisys.gimnasio.miembro.dto.CambioHorarioDTO; // Asegúrate de que este DTO esté disponible (copialo de clase-service si necesario)
+import co.analisys.gimnasio.miembro.dto.CambioHorarioDTO;
+import co.analisys.gimnasio.miembro.dto.OcupacionClase;
 import co.analisys.gimnasio.miembro.model.Miembro;
 import co.analisys.gimnasio.miembro.repository.MiembroRepository;
 import co.analisys.gimnasio.miembro.config.RabbitMQConfig;
@@ -59,7 +60,7 @@ public class MiembroService {
         miembroRepository.deleteById(id);
     }
 
-    @KafkaListener(topics = "cambios-horarios-clases", groupId = "gimnasio-miembros-group")
+    @KafkaListener(topics = "cambios-horarios-clases", groupId = "gimnasio-miembros-group", containerFactory = "kafkaListenerContainerFactory")
     public void manejarCambioHorario(CambioHorarioDTO cambio) {
         try {
             System.out.println("Cambio de horario detectado - Clase: " + cambio.getNombre() +
@@ -70,4 +71,19 @@ public class MiembroService {
             System.err.println("Error procesando cambio de horario: " + e.getMessage());
         }
     }
+
+    @KafkaListener(
+            topics = "ocupacion-clases",
+            groupId = "monitoreo-grupo",
+            containerFactory = "kafkaListenerContainerFactoryOcupacion"
+    )
+    public void manejarOcupacion(OcupacionClase ocupacion) {
+        try {
+            System.out.println("Ocupación recibida - Clase: " + ocupacion.getClaseId() +
+                    " → " + ocupacion.getOcupacion());
+        } catch (Exception e) {
+            System.err.println("Error procesando ocupación: " + e.getMessage());
+        }
+    }
+
 }

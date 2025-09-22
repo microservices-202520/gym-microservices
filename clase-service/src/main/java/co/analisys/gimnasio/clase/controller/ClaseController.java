@@ -85,4 +85,13 @@ public class ClaseController {
     public List<Clase> obtenerClasesPorEntrenador(@PathVariable Long entrenadorId) {
         return claseService.obtenerClasesPorEntrenador(entrenadorId);
     }
+
+    @PostMapping("/{id}/ocupacion")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_TRAINER')")
+    public ResponseEntity<Void> reportarOcupacion(
+            @PathVariable Long id,
+            @RequestParam("valor") int valor) {
+        claseService.reportarOcupacion(id, valor);
+        return ResponseEntity.accepted().build();
+    }
 }

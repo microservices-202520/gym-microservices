@@ -1,6 +1,7 @@
 package co.analisys.gimnasio.clase.config;
 
 import co.analisys.gimnasio.clase.dto.CambioHorarioDTO;
+import co.analisys.gimnasio.clase.dto.OcupacionClase;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
@@ -18,17 +19,31 @@ import java.util.Map;
 @EnableKafka
 public class KafkaConfig {
 
-    @Bean
-    public ProducerFactory<String, CambioHorarioDTO> producerFactory() {
+    private Map<String, Object> baseConfigs() {
         Map<String, Object> config = new HashMap<>();
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "kafka:9092");
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
-        return new DefaultKafkaProducerFactory<>(config);
+        return config;
     }
 
     @Bean
-    public KafkaTemplate<String, CambioHorarioDTO> kafkaTemplate() {
-        return new KafkaTemplate<>(producerFactory());
+    public ProducerFactory<String, CambioHorarioDTO> producerFactoryCambio() {
+        return new DefaultKafkaProducerFactory<>(baseConfigs());
+    }
+
+    @Bean
+    public KafkaTemplate<String, CambioHorarioDTO> kafkaTemplateCambio() {
+        return new KafkaTemplate<>(producerFactoryCambio());
+    }
+
+    @Bean
+    public ProducerFactory<String, OcupacionClase> producerFactoryOcupacion() {
+        return new DefaultKafkaProducerFactory<>(baseConfigs());
+    }
+
+    @Bean
+    public KafkaTemplate<String, OcupacionClase> kafkaTemplateOcupacion() {
+        return new KafkaTemplate<>(producerFactoryOcupacion());
     }
 }

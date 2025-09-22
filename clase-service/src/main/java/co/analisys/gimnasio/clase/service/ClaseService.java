@@ -4,12 +4,14 @@ import co.analisys.gimnasio.clase.client.EntrenadorClient;
 import co.analisys.gimnasio.clase.dto.ClaseConEntrenadorDto;
 import co.analisys.gimnasio.clase.dto.EntrenadorDto;
 import co.analisys.gimnasio.clase.dto.CambioHorarioDTO; // Asegúrate de que este DTO esté actualizado
+import co.analisys.gimnasio.clase.dto.OcupacionClase;
 import co.analisys.gimnasio.clase.model.Clase;
 import co.analisys.gimnasio.clase.repository.ClaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,9 +25,13 @@ public class ClaseService {
     private EntrenadorClient entrenadorClient;
 
     @Autowired
-    private KafkaTemplate<String, CambioHorarioDTO> kafkaTemplate;
+    private KafkaTemplate<String, CambioHorarioDTO> kafkaTemplateCambio;
 
     private static final String TOPIC = "cambios-horarios-clases";
+
+    @Autowired
+    private KafkaTemplate<String, OcupacionClase> kafkaTemplateOcupacion;
+    private static final String TOPIC_OCUPACION = "ocupacion-clases";
 
     public Clase programarClase(Clase clase) {
         Clase saved = claseRepository.save(clase);
@@ -93,8 +99,14 @@ public class ClaseService {
             dto.setNombre(clase.getNombre());
             dto.setNuevoHorario(String.valueOf(clase.getHorario()));
             dto.setAccion(accion);
-            kafkaTemplate.send(TOPIC, dto);
+            kafkaTemplateCambio.send(TOPIC, dto);
             System.out.println("Info enviada " + dto);
         } catch (Exception ignored) {}
+    }
+
+    public void reportarOcupacion(Long claseId, int valor) {
+        OcupacionClase ocupacion = new OcupacionClase(claseId, valor);
+        kafkaTemplateOcupacion.send(TOPIC_OCUPACION, String.valueOf(claseId), ocupacion);
+        System.out.println("Evento de ocupación enviado " + ocupacion);
     }
 }
