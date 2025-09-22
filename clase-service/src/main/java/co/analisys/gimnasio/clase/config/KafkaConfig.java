@@ -1,6 +1,7 @@
 package co.analisys.gimnasio.clase.config;
 
 import co.analisys.gimnasio.clase.dto.CambioHorarioDTO;
+import co.analisys.gimnasio.clase.dto.DatosEntrenamiento;
 import co.analisys.gimnasio.clase.dto.OcupacionClase;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -46,4 +47,15 @@ public class KafkaConfig {
     public KafkaTemplate<String, OcupacionClase> kafkaTemplateOcupacion() {
         return new KafkaTemplate<>(producerFactoryOcupacion());
     }
+
+    @Bean
+    public ProducerFactory<String, DatosEntrenamiento> producerFactoryEntrenamiento() {
+        return new DefaultKafkaProducerFactory<>(baseConfigs());
+    }
+
+    @Bean
+    public KafkaTemplate<String, DatosEntrenamiento> kafkaTemplateEntrenamiento() {
+        return new KafkaTemplate<>(producerFactoryEntrenamiento());
+    }
+
 }

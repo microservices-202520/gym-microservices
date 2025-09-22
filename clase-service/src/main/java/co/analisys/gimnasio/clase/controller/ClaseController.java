@@ -1,6 +1,7 @@
 package co.analisys.gimnasio.clase.controller;
 
 import co.analisys.gimnasio.clase.dto.ClaseConEntrenadorDto;
+import co.analisys.gimnasio.clase.dto.DatosEntrenamiento;
 import co.analisys.gimnasio.clase.model.Clase;
 import co.analisys.gimnasio.clase.service.ClaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,4 +95,13 @@ public class ClaseController {
         claseService.reportarOcupacion(id, valor);
         return ResponseEntity.accepted().build();
     }
+
+    @PostMapping("/entrenamiento")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_TRAINER')")
+    public ResponseEntity<Void> registrarEntrenamiento(@RequestBody DatosEntrenamiento dto) {
+        claseService.registrarEntrenamiento(dto);
+        return ResponseEntity.accepted().build();
+    }
+
+
 }

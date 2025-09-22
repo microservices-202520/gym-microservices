@@ -1,10 +1,7 @@
 package co.analisys.gimnasio.clase.service;
 
 import co.analisys.gimnasio.clase.client.EntrenadorClient;
-import co.analisys.gimnasio.clase.dto.ClaseConEntrenadorDto;
-import co.analisys.gimnasio.clase.dto.EntrenadorDto;
-import co.analisys.gimnasio.clase.dto.CambioHorarioDTO; // Asegúrate de que este DTO esté actualizado
-import co.analisys.gimnasio.clase.dto.OcupacionClase;
+import co.analisys.gimnasio.clase.dto.*;
 import co.analisys.gimnasio.clase.model.Clase;
 import co.analisys.gimnasio.clase.repository.ClaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +29,11 @@ public class ClaseService {
     @Autowired
     private KafkaTemplate<String, OcupacionClase> kafkaTemplateOcupacion;
     private static final String TOPIC_OCUPACION = "ocupacion-clases";
+
+    @Autowired
+    private KafkaTemplate<String, DatosEntrenamiento> kafkaTemplateEntrenamiento;
+
+    private static final String TOPIC_ENTRENAMIENTO = "datos-entrenamiento";
 
     public Clase programarClase(Clase clase) {
         Clase saved = claseRepository.save(clase);
@@ -108,5 +110,11 @@ public class ClaseService {
         OcupacionClase ocupacion = new OcupacionClase(claseId, valor);
         kafkaTemplateOcupacion.send(TOPIC_OCUPACION, String.valueOf(claseId), ocupacion);
         System.out.println("Evento de ocupación enviado " + ocupacion);
+    }
+
+    public void registrarEntrenamiento(DatosEntrenamiento dto) {
+        kafkaTemplateEntrenamiento.send(TOPIC_ENTRENAMIENTO, String.valueOf(dto.getMiembroId()), dto);
+        System.out.println("Evento de entrenamiento enviado: " + dto.getTipoEjercicio() +
+                " (" + dto.getDuracionMin() + " min)");
     }
 }
