@@ -1,8 +1,14 @@
 co\analisys\gimnasio\miembro\service\MiembroService.class
+co\analisys\gimnasio\miembro\dto\CambioHorarioDTO.class
+co\analisys\gimnasio\miembro\config\RabbitMQConfig.class
+co\analisys\gimnasio\miembro\controller\DebugController.class
+co\analisys\gimnasio\miembro\service\PagoService.class
 co\analisys\gimnasio\miembro\controller\MiembroController.class
 co\analisys\gimnasio\miembro\MiembroServiceApplication.class
 co\analisys\gimnasio\miembro\repository\MiembroRepository.class
-co\analisys\gimnasio\config\OpenApiConfig.class
-co\analisys\gimnasio\config\SecurityConfig.class
-co\analisys\gimnasio\config\KeycloakRealmRoleConverter.class
+co\analisys\gimnasio\miembro\config\KafkaConfig.class
+co\analisys\gimnasio\miembro\config\OpenAPIConfig.class
+co\analisys\gimnasio\miembro\config\SecurityConfig.class
+co\analisys\gimnasio\miembro\controller\PagoTestController.class
+co\analisys\gimnasio\miembro\config\KeycloakRealmRoleConverter.class
 co\analisys\gimnasio\miembro\model\Miembro.class

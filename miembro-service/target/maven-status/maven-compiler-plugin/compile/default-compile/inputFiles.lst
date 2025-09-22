@@ -1,8 +1,14 @@
-C:\Users\Danie\OneDrive - Universidad Icesi\Semestre9\DesarrolloDeMicroservicios\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\config\KeycloakRealmRoleConverter.java
-C:\Users\Danie\OneDrive - Universidad Icesi\Semestre9\DesarrolloDeMicroservicios\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\config\OpenApiConfig.java
-C:\Users\Danie\OneDrive - Universidad Icesi\Semestre9\DesarrolloDeMicroservicios\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\config\SecurityConfig.java
-C:\Users\Danie\OneDrive - Universidad Icesi\Semestre9\DesarrolloDeMicroservicios\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\controller\MiembroController.java
-C:\Users\Danie\OneDrive - Universidad Icesi\Semestre9\DesarrolloDeMicroservicios\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\MiembroServiceApplication.java
-C:\Users\Danie\OneDrive - Universidad Icesi\Semestre9\DesarrolloDeMicroservicios\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\model\Miembro.java
-C:\Users\Danie\OneDrive - Universidad Icesi\Semestre9\DesarrolloDeMicroservicios\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\repository\MiembroRepository.java
-C:\Users\Danie\OneDrive - Universidad Icesi\Semestre9\DesarrolloDeMicroservicios\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\service\MiembroService.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\config\KafkaConfig.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\config\KeycloakRealmRoleConverter.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\config\OpenAPIConfig.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\config\RabbitMQConfig.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\config\SecurityConfig.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\controller\DebugController.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\controller\MiembroController.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\controller\PagoTestController.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\dto\CambioHorarioDTO.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\MiembroServiceApplication.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\model\Miembro.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\repository\MiembroRepository.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\service\MiembroService.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\miembro-service\src\main\java\co\analisys\gimnasio\miembro\service\PagoService.java

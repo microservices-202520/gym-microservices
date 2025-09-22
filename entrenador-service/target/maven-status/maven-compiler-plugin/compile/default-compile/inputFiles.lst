@@ -1,5 +1,10 @@
-C:\Users\ferna\Desktop\university\monilito-gimnasio\microservices\entrenador-service\src\main\java\co\analisys\gimnasio\entrenador\controller\EntrenadorController.java
-C:\Users\ferna\Desktop\university\monilito-gimnasio\microservices\entrenador-service\src\main\java\co\analisys\gimnasio\entrenador\EntrenadorServiceApplication.java
-C:\Users\ferna\Desktop\university\monilito-gimnasio\microservices\entrenador-service\src\main\java\co\analisys\gimnasio\entrenador\model\Entrenador.java
-C:\Users\ferna\Desktop\university\monilito-gimnasio\microservices\entrenador-service\src\main\java\co\analisys\gimnasio\entrenador\repository\EntrenadorRepository.java
-C:\Users\ferna\Desktop\university\monilito-gimnasio\microservices\entrenador-service\src\main\java\co\analisys\gimnasio\entrenador\service\EntrenadorService.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\entrenador-service\src\main\java\co\analisys\gimnasio\entrenador\config\KeycloakRealmRoleConverter.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\entrenador-service\src\main\java\co\analisys\gimnasio\entrenador\config\OpenAPIConfig.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\entrenador-service\src\main\java\co\analisys\gimnasio\entrenador\config\RabbitMQConfig.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\entrenador-service\src\main\java\co\analisys\gimnasio\entrenador\config\SecurityConfig.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\entrenador-service\src\main\java\co\analisys\gimnasio\entrenador\controller\EntrenadorController.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\entrenador-service\src\main\java\co\analisys\gimnasio\entrenador\EntrenadorServiceApplication.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\entrenador-service\src\main\java\co\analisys\gimnasio\entrenador\model\Entrenador.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\entrenador-service\src\main\java\co\analisys\gimnasio\entrenador\repository\EntrenadorRepository.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\entrenador-service\src\main\java\co\analisys\gimnasio\entrenador\service\EntrenadorService.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\entrenador-service\src\main\java\co\analisys\gimnasio\entrenador\service\NotificacionSubscriber.java

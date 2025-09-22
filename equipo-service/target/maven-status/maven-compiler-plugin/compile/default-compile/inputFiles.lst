@@ -1,5 +1,10 @@
-C:\Users\ferna\Desktop\university\monilito-gimnasio\microservices\equipo-service\src\main\java\co\analisys\gimnasio\equipo\controller\EquipoController.java
-C:\Users\ferna\Desktop\university\monilito-gimnasio\microservices\equipo-service\src\main\java\co\analisys\gimnasio\equipo\EquipoServiceApplication.java
-C:\Users\ferna\Desktop\university\monilito-gimnasio\microservices\equipo-service\src\main\java\co\analisys\gimnasio\equipo\model\Equipo.java
-C:\Users\ferna\Desktop\university\monilito-gimnasio\microservices\equipo-service\src\main\java\co\analisys\gimnasio\equipo\repository\EquipoRepository.java
-C:\Users\ferna\Desktop\university\monilito-gimnasio\microservices\equipo-service\src\main\java\co\analisys\gimnasio\equipo\service\EquipoService.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\equipo-service\src\main\java\co\analisys\gimnasio\equipo\config\KeycloakRealmRoleConverter.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\equipo-service\src\main\java\co\analisys\gimnasio\equipo\config\OpenAPIConfig.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\equipo-service\src\main\java\co\analisys\gimnasio\equipo\config\RabbitMQConfig.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\equipo-service\src\main\java\co\analisys\gimnasio\equipo\config\SecurityConfig.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\equipo-service\src\main\java\co\analisys\gimnasio\equipo\controller\EquipoController.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\equipo-service\src\main\java\co\analisys\gimnasio\equipo\EquipoServiceApplication.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\equipo-service\src\main\java\co\analisys\gimnasio\equipo\model\Equipo.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\equipo-service\src\main\java\co\analisys\gimnasio\equipo\repository\EquipoRepository.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\equipo-service\src\main\java\co\analisys\gimnasio\equipo\service\EquipoService.java
+C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\equipo-service\src\main\java\co\analisys\gimnasio\equipo\service\HorarioSubscriber.java

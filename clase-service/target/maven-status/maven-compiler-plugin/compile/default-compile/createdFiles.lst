@@ -1,8 +1,14 @@
+co\analisys\gimnasio\clase\dto\CambioHorarioDTO.class
 co\analisys\gimnasio\clase\model\Clase.class
-co\analisys\gimnasio\clase\dto\EntrenadorDto.class
-co\analisys\gimnasio\clase\controller\ClaseController.class
+co\analisys\gimnasio\clase\config\SecurityConfig.class
+co\analisys\gimnasio\clase\config\OpenAPIConfig.class
+co\analisys\gimnasio\clase\config\KeycloakRealmRoleConverter.class
+co\analisys\gimnasio\clase\config\KafkaConfig.class
 co\analisys\gimnasio\clase\dto\ClaseConEntrenadorDto.class
 co\analisys\gimnasio\clase\service\ClaseService.class
-co\analisys\gimnasio\clase\repository\ClaseRepository.class
 co\analisys\gimnasio\clase\ClaseServiceApplication.class
 co\analisys\gimnasio\clase\client\EntrenadorClient.class
+co\analisys\gimnasio\clase\config\RabbitMQConfig.class
+co\analisys\gimnasio\clase\dto\EntrenadorDto.class
+co\analisys\gimnasio\clase\controller\ClaseController.class
+co\analisys\gimnasio\clase\repository\ClaseRepository.class

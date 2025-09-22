@@ -1,1 +1,4 @@
+co\analisys\gimnasio\gateway\config\KeycloakRealmRoleConverter.class
 co\analisys\gimnasio\gateway\GatewayServiceApplication.class
+co\analisys\gimnasio\gateway\config\OpenAPIConfig.class
+co\analisys\gimnasio\gateway\config\SecurityConfig.class

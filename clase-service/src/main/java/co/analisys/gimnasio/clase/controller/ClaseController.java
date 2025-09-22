@@ -26,7 +26,7 @@ public class ClaseController {
     @ApiResponse(responseCode = "200", description = "Clase creada exitosamente")
     @ApiResponse(responseCode = "403", description = "Acceso denegado")
     @PostMapping
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_TRAINER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')")
     public Clase programarClase(@RequestBody Clase clase) {
         return claseService.programarClase(clase);
     }

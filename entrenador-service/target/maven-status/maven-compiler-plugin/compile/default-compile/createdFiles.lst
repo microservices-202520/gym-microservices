@@ -1,5 +1,10 @@
-co\analisys\gimnasio\entrenador\EntrenadorServiceApplication.class
 co\analisys\gimnasio\entrenador\service\EntrenadorService.class
+co\analisys\gimnasio\entrenador\config\KeycloakRealmRoleConverter.class
+co\analisys\gimnasio\entrenador\config\SecurityConfig.class
+co\analisys\gimnasio\entrenador\repository\EntrenadorRepository.class
+co\analisys\gimnasio\entrenador\service\NotificacionSubscriber.class
+co\analisys\gimnasio\entrenador\config\RabbitMQConfig.class
+co\analisys\gimnasio\entrenador\EntrenadorServiceApplication.class
+co\analisys\gimnasio\entrenador\config\OpenAPIConfig.class
 co\analisys\gimnasio\entrenador\model\Entrenador.class
 co\analisys\gimnasio\entrenador\controller\EntrenadorController.class
-co\analisys\gimnasio\entrenador\repository\EntrenadorRepository.class
