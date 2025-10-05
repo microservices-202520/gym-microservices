@@ -1,6 +1,18 @@
   version: '3.8'
 
   services:
+    # Eureka Server
+    eureka-server:
+      image: steeltoeoss/eureka-server:latest
+      ports:
+        - "8761:8761"
+      environment:
+        - EUREKA_CLIENT_REGISTER_WITH_EUREKA=false
+        - EUREKA_CLIENT_FETCH_REGISTRY=false
+        - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      networks:
+        - gimnasio-network
+
     # RabbitMQ Broker
     
     # Miembro Service
@@ -12,9 +24,11 @@
         - SPRING_PROFILES_ACTIVE=docker
         - SPRING_RABBITMQ_HOST=rabbitmq
         - SPRING_RABBITMQ_PORT=5672
+        - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka/
       networks:
         - gimnasio-network
       depends_on:
+        - eureka-server
         - rabbitmq
 
     # Entrenador Service
@@ -26,9 +40,11 @@
         - SPRING_PROFILES_ACTIVE=docker
         - SPRING_RABBITMQ_HOST=rabbitmq
         - SPRING_RABBITMQ_PORT=5672
+        - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka/
       networks:
         - gimnasio-network
       depends_on:
+        - eureka-server
         - rabbitmq
 
     # Clase Service
@@ -41,9 +57,11 @@
         - ENTRENADOR_SERVICE_URL=http://entrenador-service:8082
         - SPRING_RABBITMQ_HOST=rabbitmq
         - SPRING_RABBITMQ_PORT=5672
+        - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka/
       networks:
         - gimnasio-network
       depends_on:
+        - eureka-server
         - entrenador-service
         - rabbitmq
 
@@ -56,8 +74,12 @@
         - SPRING_PROFILES_ACTIVE=docker
         - SPRING_RABBITMQ_HOST=rabbitmq
         - SPRING_RABBITMQ_PORT=5672
+        - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka/
       networks:
         - gimnasio-network
+      depends_on:
+        - eureka-server
+        - rabbitmq
 
     # Gateway Service
     gateway-service:
@@ -66,15 +88,15 @@
         - "8085:8085"
       environment:
         - SPRING_PROFILES_ACTIVE=docker
-        - MIEMBRO_SERVICE_URL=http://miembro-service:8081
-        - ENTRENADOR_SERVICE_URL=http://entrenador-service:8082
-        - CLASE_SERVICE_URL=http://clase-service:8083
-        - EQUIPO_SERVICE_URL=http://equipo-service:8084
+        - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka/
+        - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI=http://host.docker.internal:8080/realms/gimnasio
+        - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI=http://host.docker.internal:8080/realms/gimnasio/protocol/openid-connect/certs
         - SPRING_RABBITMQ_HOST=rabbitmq
         - SPRING_RABBITMQ_PORT=5672
       networks:
         - gimnasio-network
       depends_on:
+        - eureka-server
         - miembro-service
         - entrenador-service
         - clase-service

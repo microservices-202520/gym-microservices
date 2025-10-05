@@ -20,12 +20,17 @@ public class SecurityConfig {
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         return http
                 .authorizeExchange(exchanges -> exchanges
-                        .pathMatchers("/gateway/public/**").permitAll()
+                        // Endpoints públicos
+                        .pathMatchers("/actuator/health", "/actuator/info").permitAll()
                         .pathMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**").permitAll()
+                        // Endpoint de agregación para pruebas
+                        .pathMatchers("/api/miembros/*/agregado").permitAll()
+                        // Todos los demás endpoints requieren autenticación
                         .anyExchange().authenticated())
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt
                                 .jwtAuthenticationConverter(jwtAuthenticationConverter())))
+                .csrf(csrf -> csrf.disable())
                 .build();
     }
 

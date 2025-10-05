@@ -1,4 +1,8 @@
 co\analisys\gimnasio\gateway\config\KeycloakRealmRoleConverter.class
-co\analisys\gimnasio\gateway\GatewayServiceApplication.class
 co\analisys\gimnasio\gateway\config\OpenAPIConfig.class
 co\analisys\gimnasio\gateway\config\SecurityConfig.class
+co\analisys\gimnasio\gateway\config\AggregationGatewayFilterFactory.class
+co\analisys\gimnasio\gateway\config\GatewayRoutingConfig.class
+co\analisys\gimnasio\gateway\GatewayServiceApplication.class
+co\analisys\gimnasio\gateway\filter\JwtForwardingFilter.class
+co\analisys\gimnasio\gateway\config\AggregationGatewayFilterFactory$Config.class

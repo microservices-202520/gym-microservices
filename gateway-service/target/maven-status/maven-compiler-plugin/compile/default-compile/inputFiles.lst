@@ -1,4 +1,7 @@
-C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\gateway-service\src\main\java\co\analisys\gimnasio\gateway\config\KeycloakRealmRoleConverter.java
-C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\gateway-service\src\main\java\co\analisys\gimnasio\gateway\config\OpenAPIConfig.java
-C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\gateway-service\src\main\java\co\analisys\gimnasio\gateway\config\SecurityConfig.java
-C:\Users\pinil\Documents\microservicios\homework_kafka\gym-microservices\gateway-service\src\main\java\co\analisys\gimnasio\gateway\GatewayServiceApplication.java
+C:\Users\Danie\OneDrive - Universidad Icesi\Semestre9\DesarrolloDeMicroservicios\gym-microservices\gateway-service\src\main\java\co\analisys\gimnasio\gateway\config\AggregationGatewayFilterFactory.java
+C:\Users\Danie\OneDrive - Universidad Icesi\Semestre9\DesarrolloDeMicroservicios\gym-microservices\gateway-service\src\main\java\co\analisys\gimnasio\gateway\config\GatewayRoutingConfig.java
+C:\Users\Danie\OneDrive - Universidad Icesi\Semestre9\DesarrolloDeMicroservicios\gym-microservices\gateway-service\src\main\java\co\analisys\gimnasio\gateway\config\KeycloakRealmRoleConverter.java
+C:\Users\Danie\OneDrive - Universidad Icesi\Semestre9\DesarrolloDeMicroservicios\gym-microservices\gateway-service\src\main\java\co\analisys\gimnasio\gateway\config\OpenAPIConfig.java
+C:\Users\Danie\OneDrive - Universidad Icesi\Semestre9\DesarrolloDeMicroservicios\gym-microservices\gateway-service\src\main\java\co\analisys\gimnasio\gateway\config\SecurityConfig.java
+C:\Users\Danie\OneDrive - Universidad Icesi\Semestre9\DesarrolloDeMicroservicios\gym-microservices\gateway-service\src\main\java\co\analisys\gimnasio\gateway\filter\JwtForwardingFilter.java
+C:\Users\Danie\OneDrive - Universidad Icesi\Semestre9\DesarrolloDeMicroservicios\gym-microservices\gateway-service\src\main\java\co\analisys\gimnasio\gateway\GatewayServiceApplication.java

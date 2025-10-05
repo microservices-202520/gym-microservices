@@ -18,6 +18,6 @@ WORKDIR /app
 # Copy jar from build stage
 COPY --from=build /app/target/gateway-service-0.0.1-SNAPSHOT.jar gateway-service.jar
 
-EXPOSE 8080
+EXPOSE 8085
 
 CMD ["java", "-jar", "gateway-service.jar"]
